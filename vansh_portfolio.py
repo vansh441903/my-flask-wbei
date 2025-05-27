@@ -188,6 +188,16 @@ def logout():
     flash("Logged out successfully.")
     return redirect(url_for('index'))
 
+# Privacy Policy route
+@app.route('/privacy')
+def privacy_policy():
+    return render_template('privacy_and_policy.html')
+
+# Shipping Policy route
+@app.route('/shipping')
+def shipping_policy():
+    return render_template('shipping.html')
+
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
