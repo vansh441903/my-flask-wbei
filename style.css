@@ -16,6 +16,11 @@ body {
 nav {
     background-color: #007BFF;
     padding: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+nav:hover {
+    background-color: #0056b3;
 }
 
 nav ul {
@@ -94,7 +99,10 @@ nav ul li a:hover {
 }
 
 /* Button Style */
-.btn {
+.btn,
+.pay-btn,
+.buy-btn,
+.consult-btn {
     display: inline-block;
     padding: 12px 25px;
     background-color: #007BFF;
@@ -102,10 +110,15 @@ nav ul li a:hover {
     border-radius: 5px;
     font-weight: bold;
     text-align: center;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover,
+.pay-btn:hover,
+.buy-btn:hover,
+.consult-btn:hover {
     background-color: #0056b3;
 }
 
@@ -140,6 +153,11 @@ form textarea {
     height: 120px;
 }
 
+form button,
+form .btn {
+    margin-top: 10px;
+}
+
 /* Dashboard and Contact Layouts */
 .dashboard-container,
 .contact-container {
@@ -150,9 +168,21 @@ form textarea {
 
 /* Flash Messages */
 .flash {
-    color: red;
+    padding: 12px;
     text-align: center;
-    padding: 10px;
+    border-radius: 6px;
+    margin: 15px auto;
+    max-width: 500px;
+}
+
+.flash.error {
+    background-color: #ffe5e5;
+    color: #c0392b;
+}
+
+.flash.success {
+    background-color: #e8f5e9;
+    color: #27ae60;
 }
 
 /* Responsive Design */
@@ -177,6 +207,31 @@ form textarea {
         margin: 10px 0;
     }
 }
+
+@media (max-width: 600px) {
+    .btn,
+    .pay-btn,
+    .buy-btn,
+    .consult-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 1.1rem;
+    }
+
+    .pricing-section,
+    .payment-section,
+    .home-container,
+    .dashboard-container,
+    .contact-container {
+        padding: 30px 10px;
+    }
+
+    form {
+        padding: 20px;
+    }
+}
+
+/* Payment Section */
 .payment-section {
     display: flex;
     justify-content: center;
@@ -233,6 +288,8 @@ form textarea {
     font-size: 13px;
     color: #999;
 }
+
+/* Pricing Section */
 .pricing-section {
     text-align: center;
     padding: 40px 20px;
