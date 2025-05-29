@@ -2,21 +2,21 @@
 {% block content %}
 <div class="dashboard-container">
 
-    <div class="dashboard-card">
+    <section class="dashboard-card">
         <h2>👋 Welcome, {{ session['user'] }}!</h2>
         <p class="welcome-message">
             You are now logged in to your personal dashboard. From here, you have complete access to all premium services, including exclusive pricing plans, consultation booking, and web development progress tracking.
         </p>
 
-        <div class="dashboard-actions">
+        <nav class="dashboard-actions">
             <a href="{{ url_for('pricing') }}" class="dashboard-btn">💼 View Premium Plans</a>
             <a href="{{ url_for('contact') }}" class="dashboard-btn">📞 Contact for Consultation</a>
             <a href="{{ url_for('skills') }}" class="dashboard-btn">🧠 View My Skills</a>
             <a href="{{ url_for('logout') }}" class="dashboard-btn logout">🚪 Logout</a>
-        </div>
-    </div>
+        </nav>
+    </section>
 
-    <div class="dashboard-info">
+    <section class="dashboard-info">
         <h3>🔐 Session Information</h3>
         <ul>
             <li><strong>Username:</strong> {{ session['user'] }}</li>
@@ -40,12 +40,12 @@
             <li>📄 Prepare your brand assets and content for faster development delivery</li>
             <li>🔗 Follow us on LinkedIn for updates and project showcases</li>
         </ul>
-    </div>
+    </section>
 
     <!-- Rating System Section -->
-    <div class="rating-section">
+    <section class="rating-section">
         <h3>⭐ Rate Your Experience</h3>
-        <form action="{{ url_for('rate') }}" method="POST">
+        <form action="{{ url_for('rate') }}" method="POST" class="rating-form">
             <label for="rating">Rate us (1 to 5):</label>
             <input type="number" name="rating" id="rating" min="1" max="5" required>
             <button type="submit">Submit Rating</button>
@@ -60,7 +60,7 @@
                 {% endfor %}
             </ul>
         </div>
-    </div>
+    </section>
 
 </div>
 {% endblock %}
