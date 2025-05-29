@@ -3,7 +3,7 @@
 <div class="home-container">
 
     <!-- About Me Section -->
-    <div class="home-column">
+    <section class="home-column about-me">
         <h2>👨‍💻 About Me</h2>
         <p>
             Hello! I'm <strong>Vansh Aggarwal</strong>, a passionate and creative developer with a deep interest in building both modern websites and immersive games.
@@ -16,17 +16,17 @@
         <p>
             I believe in lifelong learning and constantly update my skills to stay ahead in the fast-paced tech industry.
         </p>
-    </div>
+    </section>
 
     <!-- Mission & Values Section -->
     <div class="home-column">
         <h2>🌟 Mission & Values</h2>
         <p>
             My mission is to build high-quality software that solves real-world problems, simplifies lives, and provides value to users and businesses.
-            I believe that technology should be a tool for empowerment — intuitive, accessible, and efficient.
+            I believe technology should be a tool for empowerment — intuitive, accessible, and efficient.
         </p>
         <p>
-            I approach every project with integrity, creativity, and attention to detail. I value transparency, timely communication, and long-term relationships with my clients.
+            I approach every project with integrity, creativity, and attention to detail. Transparency, timely communication, and long-term relationships are my core values.
         </p>
         <p>
             Whether it's a portfolio website, a game concept, or a business platform, I give every project my full dedication.
@@ -42,14 +42,17 @@
         </p>
         <ul>
             <li><strong>Email:</strong> <a href="mailto:vanshaggarwal076@gmail.com">vanshaggarwal076@gmail.com</a></li>
-            <li><strong>Phone:</strong> <a href="tel:7717260971">+91 7717260971</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+917717260971">+91 7717260971</a></li>
         </ul>
         <a href="{{ url_for('contact') }}" class="btn">Get in Touch</a><br><br>
-        {% if 'user_id' not in session %}
-        <a href="{{ url_for('signup') }}" class="btn">Sign Up</a>
+        {% if 'user' not in session %}
+            <a href="{{ url_for('signup') }}" class="btn">Sign Up</a>
         {% endif %}
     </div>
 
 </div>
 {% endblock %}
+
+
+
 
