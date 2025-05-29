@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Refund Policy{% endblock %}
+
+{% block content %}
+<div class="policy-container">
+    <h1>Refund Policy</h1>
+    <p>Your satisfaction is our top priority. If you are not entirely satisfied with your purchase, we're here to help.</p>
+
+    <h2>Eligibility for Refunds</h2>
+    <ul>
+        <li>You must request a refund within 7 days of purchase.</li>
+        <li>The product or service must not have been fully consumed or delivered.</li>
+        <li>Proof of purchase is required.</li>
+    </ul>
+
+    <h2>Non-Refundable Items</h2>
+    <ul>
+        <li>Services already rendered or completed.</li>
+        <li>Custom software solutions once development has begun.</li>
+        <li>Any digital products that have been downloaded or accessed.</li>
+    </ul>
+
+    <h2>How to Request a Refund</h2>
+    <p>To request a refund, please contact us via the <a href="{{ url_for('contact') }}">Contact Page</a> with your order details and the reason for your request.</p>
+
+    <h2>Processing Refunds</h2>
+    <p>If your refund is approved, we will initiate a refund to your original method of payment. It may take a few business days for the refund to reflect in your account.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions about our refund policy, feel free to reach out via our <a href="{{ url_for('contact') }}">Contact Page</a>.</p>
+</div>
+{% endblock %}
