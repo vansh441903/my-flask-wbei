@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="max-width: 400px; margin: 50px auto;">
+    <h2 class="text-center mb-4">Enter Verification Code</h2>
+    <form method="POST" novalidate>
+        <div class="form-group">
+            <label for="code">Verification Code</label>
+            <input
+                type="text"
+                class="form-control"
+                id="code"
+                name="code"
+                required
+                maxlength="6"
+                pattern="\d{6}"
+                placeholder="Enter the 6-digit code"
+                autofocus
+            >
+            <small class="form-text text-muted">Check your email for the verification code.</small>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Verify</button>
+    </form>
+</div>
+{% endblock %}

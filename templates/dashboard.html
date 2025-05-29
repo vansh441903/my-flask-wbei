@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+
+    <div class="dashboard-card">
+        <h2>👋 Welcome, {{ session['user'] }}!</h2>
+        <p class="welcome-message">
+            You are now logged in to your personal dashboard. From here, you have complete access to all premium services, including exclusive pricing plans, consultation booking, and web development progress tracking.
+        </p>
+
+        <div class="dashboard-actions">
+            <a href="{{ url_for('pricing') }}" class="dashboard-btn">💼 View Premium Plans</a>
+            <a href="{{ url_for('contact') }}" class="dashboard-btn">📞 Contact for Consultation</a>
+            <a href="{{ url_for('skills') }}" class="dashboard-btn">🧠 View My Skills</a>
+            <a href="{{ url_for('logout') }}" class="dashboard-btn logout">🚪 Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard-info">
+        <h3>🔐 Session Information</h3>
+        <ul>
+            <li><strong>Username:</strong> {{ session['user'] }}</li>
+            <li><strong>Status:</strong> Logged In</li>
+            <li><strong>Access Level:</strong> Full Access to Premium Sections</li>
+            <li><strong>Session Active:</strong> Yes</li>
+        </ul>
+
+        <h3>🌟 What You Can Do Now</h3>
+        <ul>
+            <li>📊 Explore detailed pricing plans with estimated delivery timelines</li>
+            <li>🛒 Request custom development packages for your business</li>
+            <li>📬 Send direct messages via contact form (uses Gmail integration)</li>
+            <li>💬 Connect for a personal consultation or development inquiry</li>
+        </ul>
+
+        <h3>📈 Suggestions for You</h3>
+        <ul>
+            <li>✅ Upgrade to the <strong>Enterprise Ultra Plan</strong> for complete digital presence</li>
+            <li>🛠 Schedule a call to walk through your requirements and get tailored recommendations</li>
+            <li>📄 Prepare your brand assets and content for faster development delivery</li>
+            <li>🔗 Follow us on LinkedIn for updates and project showcases</li>
+        </ul>
+    </div>
+
+</div>
+{% endblock %}
+
+

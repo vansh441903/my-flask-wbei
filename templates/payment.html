@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Methods - Vansh Aggarwal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="payment-container">
+        <h1>Choose Your Payment Method</h1>
+
+        <section class="payment-options">
+            <div class="payment-option">
+                <h2>Credit/Debit Card</h2>
+                <p>Pay securely using your credit or debit card.</p>
+                <!-- You can integrate card payment gateway here -->
+                <button class="btn-primary" disabled>Coming Soon</button>
+            </div>
+
+            <div class="payment-option">
+                <h2>UPI Payment</h2>
+                <p>Scan the QR code below to pay via UPI.</p>
+                <img src="{{ url_for('static', filename='images/upi-qr.png') }}" alt="UPI QR Code" class="upi-qr" />
+                <p>Pay to: vanshaggarwal@upi</p>
+            </div>
+
+            <div class="payment-option">
+                <h2>Net Banking</h2>
+                <p>Use your bank’s net banking for quick payment.</p>
+                <button class="btn-primary" disabled>Coming Soon</button>
+            </div>
+
+            <div class="payment-option">
+                <h2>Cash on Delivery</h2>
+                <p>Pay cash after service delivery (if applicable).</p>
+                <button class="btn-primary" disabled>Not Available</button>
+            </div>
+        </section>
+
+        <p class="note">Note: Online payment gateways will be integrated soon for a seamless experience.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vansh Aggarwal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

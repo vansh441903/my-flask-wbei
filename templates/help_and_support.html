@@ -1,0 +1,70 @@
+<!-- templates/help_and_support.html -->
+{% extends "base.html" %}
+{% block title %}Help & Support{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="sidebar">
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('skills') }}">Skills</a></li>
+            <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('help_and_support') }}" class="active">Help & Support</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h2 class="heading">Help & Support</h2>
+        <p class="support-info">Customer Care Number: <strong>9878939593</strong></p>
+
+        <!-- Trigger Button -->
+        <button onclick="toggleDeleteForm()" class="btn-danger" style="margin-bottom: 1.5rem;">Delete Account</button>
+
+        <!-- Hidden Delete Form -->
+        <div id="deleteForm" style="display: none;">
+            <form method="POST" action="{{ url_for('help_and_support_verify_delete_code') }}" class="form-container">
+
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="flash-messages">
+                      {% for message in messages %}
+                        <p class="flash">{{ message }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <label for="username" class="label">Username</label>
+                <input type="text" id="username" name="username" class="input-field" placeholder="Enter your username" required>
+
+                <label for="email" class="label">Email</label>
+                <input type="email" id="email" name="email" class="input-field" placeholder="Enter your email" required>
+
+                <button type="submit" class="btn-danger">Send Verification Code</button>
+            </form>
+        </div>
+
+        <!-- Verification Code Form (only if in session) -->
+        {% if session.get('pending_delete_user') %}
+        <form method="POST" action="{{ url_for('confirm_delete') }}" class="form-container" style="margin-top: 2rem;">
+            <label for="verification_code" class="label">Verification Code</label>
+            <input type="text" id="verification_code" name="verification_code" class="input-field" placeholder="Enter verification code" required>
+
+            <button type="submit" class="btn-danger">Confirm Deletion</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<!-- JavaScript to toggle form visibility -->
+<script>
+    function toggleDeleteForm() {
+        const form = document.getElementById('deleteForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+{% endblock %}
+
+

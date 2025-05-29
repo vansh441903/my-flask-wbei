@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container pricing-section">
+    <h2 class="section-title">Our Premium Plans</h2>
+    <p class="section-description">Select a package that fits your project’s goals and delivery timeline.</p>
+
+    <div class="plans-grid">
+        <div class="plan-card">
+            <h3 class="plan-title">Starter</h3>
+            <p class="plan-price">₹5,000</p>
+            <ul class="plan-features">
+                <li>1 Static Web Page</li>
+                <li>Mobile Responsive Design</li>
+                <li>Email Support</li>
+                <li><strong>Delivery: 2–3 Days</strong></li>
+            </ul>
+            <a href="{{ url_for('payment') }}">
+                <button class="buy-btn">Buy Now</button>
+            </a>
+        </div>
+
+        <div class="plan-card">
+            <h3 class="plan-title">Advanced</h3>
+            <p class="plan-price">₹15,000</p>
+            <ul class="plan-features">
+                <li>Up to 5 Pages</li>
+                <li>Responsive Layout</li>
+                <li>Basic Contact Form</li>
+                <li><strong>Delivery: 4–5 Days</strong></li>
+            </ul>
+            <a href="{{ url_for('payment') }}">
+                <button class="buy-btn">Buy Now</button>
+            </a>
+        </div>
+
+        <div class="plan-card">
+            <h3 class="plan-title">Professional</h3>
+            <p class="plan-price">₹25,000</p>
+            <ul class="plan-features">
+                <li>Up to 10 Pages</li>
+                <li>Smooth Animations</li>
+                <li>Admin Panel Access</li>
+                <li><strong>Delivery: 5–6 Days</strong></li>
+            </ul>
+            <a href="{{ url_for('payment') }}">
+                <button class="buy-btn">Buy Now</button>
+            </a>
+        </div>
+
+        <div class="plan-card">
+            <h3 class="plan-title">Business</h3>
+            <p class="plan-price">₹35,000</p>
+            <ul class="plan-features">
+                <li>Full Portfolio Website</li>
+                <li>Database Integration</li>
+                <li>SEO Optimization</li>
+                <li><strong>Delivery: 6–7 Days</strong></li>
+            </ul>
+            <a href="{{ url_for('payment') }}">
+                <button class="buy-btn">Buy Now</button>
+            </a>
+        </div>
+
+        <div class="plan-card highlight">
+            <h3 class="plan-title">Enterprise</h3>
+            <p class="plan-price">₹45,000</p>
+            <ul class="plan-features">
+                <li>Complete Web App Solution</li>
+                <li>Custom APIs & Automation</li>
+                <li>Lifetime Support + Consultancy</li>
+                <li><strong>Delivery: 7–9 Days</strong></li>
+            </ul>
+            <a href="{{ url_for('payment') }}">
+                <button class="buy-btn">Buy Now</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="consult-request">
+        <p>Need a custom plan tailored to your business?</p>
+        <a href="{{ url_for('contact') }}">
+            <button class="consult-btn">Request Consultation</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
