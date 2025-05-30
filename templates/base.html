@@ -84,6 +84,23 @@
       border-radius: 6px;
       text-align: center;
     }
+
+    /* Push main content right when sidebar active */
+    body.sidebar-active main {
+      margin-left: 250px;
+      transition: margin-left 0.3s ease;
+    }
+
+    /* On smaller screens (mobile), make sidebar full screen and overlay */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        max-width: 300px;
+      }
+      body.sidebar-active main {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 
@@ -153,15 +170,18 @@
   <script>
     const sidebar = document.getElementById("sidebar");
     const toggleButton = document.querySelector(".sidebar-toggle");
+    const body = document.body;
 
     function toggleSidebar(button) {
       sidebar.classList.toggle("active");
+      body.classList.toggle("sidebar-active");
       const expanded = button.getAttribute("aria-expanded") === "true";
       button.setAttribute("aria-expanded", !expanded);
     }
 
     function closeSidebar() {
       sidebar.classList.remove("active");
+      body.classList.remove("sidebar-active");
       toggleButton.setAttribute("aria-expanded", false);
     }
   </script>
