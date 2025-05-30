@@ -359,8 +359,12 @@ footer a:hover {
     font-size: 0.8rem;
     padding: 20px 10px;
   }
+
+  /* MAIN CONTENT full width on small screens */
+  .main-content {
+    margin-left: 0 !important;
+  }
 }
-/* ...your existing styles above... */
 
 @media (max-width: 480px) {
   .hero-content h1 {
@@ -378,21 +382,31 @@ footer a:hover {
 
   form.contact-form input,
   form.contact-form textarea {
-    font-size: 0.95rem;
-    padding: 12px 14px;
+    padding: 10px 12px;
   }
+}
 
-  section h2 {
-    font-size: 1.8rem;
-  }
+/* === IMPORTANT: Sidebar + Main Content Layout Fix === */
 
-  .skill-item h3 {
-    font-size: 1.2rem;
-  }
+/* Assuming your main content wrapper uses the class .main-content */
+.main-content {
+  margin-left: 290px; /* 250px sidebar width + 40px padding */
+  transition: margin-left 0.3s ease;
+}
 
-  .skill-item p {
-    font-size: 0.9rem;
+/* When sidebar is hidden (not active), push content slightly left */
+.sidebar:not(.active) ~ .main-content {
+  margin-left: 20px;
+}
+
+/* On mobile, remove left margin completely */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
   }
+}
+
+
 }
 
 
