@@ -1,19 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="contact-container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <div class="contact-form">
         <h2>📞 Get in Touch</h2>
-        <p>Whether you're interested in working together, requesting a consultation, or just have a question — feel free to reach out. Fill in the form below and I’ll get back to you via email.</p>
+        <p>
+            Whether you're interested in working together, requesting a consultation, or just have a question —
+            feel free to reach out. Fill in the form below and I’ll get back to you via email.
+        </p>
 
-        <form method="POST" action="{{ url_for('contact') }}">
+        <form method="POST" action="{{ url_for('contact') }}" autocomplete="off" novalidate>
             <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-label="Your Name">
 
             <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required aria-label="Your Email">
 
             <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required aria-label="Message"></textarea>
 
             <button type="submit">📨 Send Message</button>
         </form>
@@ -26,4 +39,6 @@
     </div>
 </div>
 {% endblock %}
+
+
 
