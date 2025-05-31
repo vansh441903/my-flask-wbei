@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Payment Methods - Vansh Aggarwal</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header>
         <nav>
-            <ul>
+            <ul class="navbar">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
                 <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
@@ -25,7 +25,6 @@
             <div class="payment-option">
                 <h2>Credit/Debit Card</h2>
                 <p>Pay securely using your credit or debit card.</p>
-                <!-- You can integrate card payment gateway here -->
                 <button class="btn-primary" disabled>Coming Soon</button>
             </div>
 
@@ -33,7 +32,7 @@
                 <h2>UPI Payment</h2>
                 <p>Scan the QR code below to pay via UPI.</p>
                 <img src="{{ url_for('static', filename='images/upi-qr.png') }}" alt="UPI QR Code" class="upi-qr" />
-                <p>Pay to: vanshaggarwal@upi</p>
+                <p>Pay to: <strong>vanshaggarwal@upi</strong></p>
             </div>
 
             <div class="payment-option">
