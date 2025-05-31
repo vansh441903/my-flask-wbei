@@ -85,13 +85,11 @@
       text-align: center;
     }
 
-    /* Push main content right when sidebar active */
     body.sidebar-active main {
       margin-left: 250px;
       transition: margin-left 0.3s ease;
     }
 
-    /* On smaller screens (mobile), make sidebar full screen and overlay */
     @media (max-width: 768px) {
       .sidebar {
         width: 100%;
@@ -129,6 +127,7 @@
 
       {% if session.get('user') %}
         <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
+        <li><a href="{{ url_for('payment') }}">Payment</a></li> <!-- ✅ Newly Added -->
         <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
         <li><a href="{{ url_for('help_and_support') }}">Help & Support</a></li>
         <li><a href="{{ url_for('logout') }}">Logout ({{ session['user'] }})</a></li>
@@ -161,9 +160,7 @@
 
   <!-- Footer -->
   <footer style="text-align: center; padding: 15px 0; background: #007BFF; color: white; margin-top: 40px;">
-    <p>
-      &copy; 2025 Vansh Aggarwal. All rights reserved.
-    </p>
+    <p>&copy; 2025 Vansh Aggarwal. All rights reserved.</p>
   </footer>
 
   <!-- JavaScript to Handle Sidebar Toggle -->
