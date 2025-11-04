@@ -13,9 +13,8 @@
     {% endwith %}
 
     <form method="POST" action="{{ url_for('signup') }}">
-        {{ form.hidden_tag() }}  {# For CSRF protection if using Flask-WTF #}
-        <input type="text" name="username" placeholder="Username" value="{{ request.form.username }}" required>
-        <input type="email" name="email" placeholder="Email" value="{{ request.form.email }}" required>
+        <input type="text" name="username" placeholder="Username" value="{{ request.form.get('username', '') }}" required>
+        <input type="email" name="email" placeholder="Email" value="{{ request.form.get('email', '') }}" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Sign Up</button>
     </form>
