@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
-import smtplib
-import ssl
 import os
 import random
 import string
+import requests  # ✅ used for SendGrid API
 
 app = Flask(__name__)
 app.secret_key = 'myverysecretkey1234567890'
@@ -36,21 +35,45 @@ def init_db():
 
 init_db()
 
-# Utility to send verification email securely
+# -------- EMAIL (SendGrid) ----------
+
+def send_email_via_sendgrid(to_email, subject, content_text):
+    """Send email via SendGrid HTTP API using environment variables."""
+    api_key = os.getenv("SENDGRID_API_KEY")
+    sender = os.getenv("SENDER_EMAIL")
+
+    if not api_key or not sender:
+        print("⚠️ SendGrid API key or SENDER_EMAIL not set.")
+        print("Email content for debug:", content_text)
+        return False
+
+    url = "https://api.sendgrid.com/v3/mail/send"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "personalizations": [{"to": [{"email": to_email}], "subject": subject}],
+        "from": {"email": sender},
+        "content": [{"type": "text/plain", "value": content_text}]
+    }
+
+    try:
+        resp = requests.post(url, headers=headers, json=data, timeout=10)
+        if resp.status_code in (200, 202):
+            return True
+        else:
+            print("SendGrid error:", resp.status_code, resp.text)
+            return False
+    except Exception as e:
+        print("Exception sending email:", e)
+        return False
+
+
 def send_verification_email(to_email, code):
-    sender_email = "vanshaggarwal076@gmail.com"
-    app_password = "rrtw ebep evpb hhip"
     subject = "Your Verification Code"
     body = f"Your verification code is: {code}"
-    email_text = f"Subject: {subject}\n\n{body}"
-
-    context = ssl.create_default_context()
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-            server.login(sender_email, app_password)
-            server.sendmail(sender_email, to_email, email_text)
-    except Exception as e:
-        print(f"Error sending email: {e}")
+    return send_email_via_sendgrid(to_email, subject, body)
 
 # -------- ROUTES -----------
 
@@ -77,22 +100,19 @@ def contact():
             flash('All fields are required.')
             return redirect(url_for('contact'))
 
-        sender_email = "vanshaggarwal076@gmail.com"
-        receiver_email = "vanshaggarwal076@gmail.com"
-        app_password = "rrtw ebep evpb hhip"
-
         subject = "New Contact Form Submission"
         body = f"Name: {name}\nEmail: {email}\nMessage:\n{message}"
-        email_text = f"Subject: {subject}\n\n{body}"
 
-        context = ssl.create_default_context()
-        try:
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-                server.login(sender_email, app_password)
-                server.sendmail(sender_email, receiver_email, email_text)
+        owner_email = os.getenv("SENDER_EMAIL")
+        if not owner_email:
+            flash("Server email not configured. Please contact site owner directly.")
+            return redirect(url_for('contact'))
+
+        success = send_email_via_sendgrid(owner_email, subject, body)
+        if success:
             flash("Message sent successfully!")
-        except Exception as e:
-            flash(f"Error sending message: {e}")
+        else:
+            flash("Error sending message. Try again later.")
         return redirect(url_for('contact'))
 
     return render_template('contact_us.html')
@@ -152,9 +172,14 @@ def signup():
             'verification_code': verification_code
         }
 
-        send_verification_email(email, verification_code)
-        flash("Verification code sent to your email.")
-        return redirect(url_for('verify_code'))
+        sent = send_verification_email(email, verification_code)
+        if sent:
+            flash("Verification code sent to your email.")
+            return redirect(url_for('verify_code'))
+        else:
+            print("Verification code (not emailed):", verification_code)
+            flash("Could not send verification email. Try again later.")
+            return redirect(url_for('signup'))
 
     return render_template('signup.html')
 
@@ -313,9 +338,14 @@ def help_and_support_delete_account():
             'verification_code': verification_code
         }
 
-        send_verification_email(email, verification_code)
-        flash("Verification code sent. Please check your email.")
-        return redirect(url_for('help_and_support_verify_delete_code'))
+        sent = send_verification_email(email, verification_code)
+        if sent:
+            flash("Verification code sent. Please check your email.")
+            return redirect(url_for('help_and_support_verify_delete_code'))
+        else:
+            print("Delete-account verification code (not emailed):", verification_code)
+            flash("Could not send verification email. Try again later.")
+            return redirect(url_for('help_and_support_delete_account'))
 
     return render_template('help_and_support_delete_account.html')
 
@@ -350,4 +380,3 @@ def help_and_support_verify_delete_code():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-
