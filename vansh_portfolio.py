@@ -47,6 +47,9 @@ def send_email_via_sendgrid(to_email, subject, content_text):
         print("Email content for debug:", content_text)
         return False
 
+     from_name = "Vansh Portfolio"
+    content_text += "\n\n--\nThis message was sent automatically by Vansh Portfolio."
+
     url = "https://api.sendgrid.com/v3/mail/send"
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -380,3 +383,4 @@ def help_and_support_verify_delete_code():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
