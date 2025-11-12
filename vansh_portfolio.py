@@ -47,7 +47,7 @@ def send_email_via_sendgrid(to_email, subject, content_text):
         print("Email content for debug:", content_text)
         return False
 
-     from_name = "Vansh Portfolio"
+    from_name = "Vansh Portfolio"
     content_text += "\n\n--\nThis message was sent automatically by Vansh Portfolio."
 
     url = "https://api.sendgrid.com/v3/mail/send"
