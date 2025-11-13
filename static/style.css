@@ -25,13 +25,13 @@ a {
   padding: 20px;
 }
 
-/* --- Header / Navbar --- */
+/* --- Header --- */
 header {
   background: #121212;
   color: #fff;
   padding: 20px 0;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -39,10 +39,8 @@ header {
 
 nav {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
   flex-direction: column;
-  flex-wrap: wrap;
+  align-items: flex-start;
   height: 100vh;
   padding: 20px 0;
 }
@@ -90,7 +88,7 @@ nav ul li a:hover {
   border-left: 6px solid #f39c12;
   border-radius: 10px;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* --- Hero Section --- */
@@ -123,13 +121,13 @@ nav ul li a:hover {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 15px;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 }
 
 .hero-content p {
   font-size: 1.3rem;
   font-weight: 500;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
 }
 
 /* --- Buttons --- */
@@ -157,7 +155,7 @@ section {
   margin: 40px auto;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -183,7 +181,7 @@ section h2 {
   padding: 25px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
 }
 
@@ -248,7 +246,7 @@ footer {
   font-size: 0.9rem;
   letter-spacing: 1px;
   margin-top: 40px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 footer a {
@@ -261,20 +259,21 @@ footer a:hover {
   color: #fdd835;
 }
 
-/* --- Sidebar (Desktop) --- */
+/* --- Sidebar --- */
 .sidebar {
   background: #1e1e1e;
   padding: 20px;
-  min-width: 250px;
+  width: 260px;
+  max-width: 80%;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   position: fixed;
   top: 80px;
-  left: -270px;
+  left: -280px;
   bottom: 20px;
   overflow-y: auto;
-  transition: left 0.3s ease;
-  z-index: 100;
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .sidebar.active {
@@ -303,40 +302,31 @@ footer a:hover {
   background: #e67e22;
 }
 
-/* --- Flash Message Styling --- */
-.flash-message {
-  background-color: #f8d7da;
-  color: #842029;
-  padding: 10px 15px;
-  border-radius: 5px;
-  margin-bottom: 15px;
+/* --- Main Content Layout --- */
+.main-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
 }
 
-/* --- Responsive Fixes --- */
-@media (max-width: 768px) {
-  nav {
-    height: auto;
-    flex-direction: column;
-  }
+.sidebar.active ~ .main-content {
+  margin-left: 280px;
+}
 
-  .hero {
-    height: 300px;
-    background-position: center center;
-    background-size: cover;
-  }
-
-  .hero-content h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
+@media (max-width: 1024px) {
   .sidebar {
-    top: 0;
+    width: 240px;
+  }
+  .sidebar.active ~ .main-content {
+    margin-left: 250px;
+  }
+}
+
+/* --- Mobile Screens --- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80%;
     left: -100%;
-    width: 100%;
+    top: 0;
     height: 100%;
     border-radius: 0;
   }
@@ -345,24 +335,25 @@ footer a:hover {
     left: 0;
   }
 
+  .sidebar.active ~ .main-content {
+    margin-left: 0;
+  }
+
   .sidebar-toggle {
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 15px;
   }
 
-  section {
-    padding: 40px 15px;
-    margin: 20px auto;
+  .hero {
+    height: 300px;
   }
 
-  footer {
-    font-size: 0.8rem;
-    padding: 20px 10px;
+  .hero-content h1 {
+    font-size: 2.2rem;
   }
 
-  /* MAIN CONTENT full width on small screens */
-  .main-content {
-    margin-left: 0 !important;
+  .hero-content p {
+    font-size: 1rem;
   }
 }
 
@@ -386,28 +377,6 @@ footer a:hover {
   }
 }
 
-/* === IMPORTANT: Sidebar + Main Content Layout Fix === */
-
-/* Assuming your main content wrapper uses the class .main-content */
-.main-content {
-  margin-left: 290px; /* 250px sidebar width + 40px padding */
-  transition: margin-left 0.3s ease;
-}
-
-/* When sidebar is hidden (not active), push content slightly left */
-.sidebar:not(.active) ~ .main-content {
-  margin-left: 20px;
-}
-
-/* On mobile, remove left margin completely */
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0 !important;
-  }
-}
-
-
-}
 
 
 
